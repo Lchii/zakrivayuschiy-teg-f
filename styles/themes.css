@@ -1,6 +1,31 @@
-/* В этом файле вы опишете значения переменных в разных цветовых схемах.
-Придерживайтесь такого именования классов:
-✦ theme-dark — класс тёмной темы
-✦ theme-light — класс светлой темы
-✦ не забудьте описать стили для изменения темы через медизапрос пользовательских предпочтений
-*/
+:root.theme-dark {
+  --bg-color: #000;
+  --accent-color: #00cc14;
+  --rlg-start-color: #000;
+  --lg-start-color: #007f0c;
+  --lg-end-color: #004306;
+  --text-stroke-color: #000;
+  --buttons-text-color: #00cc14;
+}
+
+:root.theme-light {
+  --bg-color: #fff;
+  --accent-color: #000;
+  --rlg-start-color: #d3d3d3;
+  --lg-start-color: #e7e7e7;
+  --lg-end-color: #1a1a1a;
+  --text-stroke-color: #fff;
+  --buttons-text-color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #000;
+    --accent-color: #00cc14;
+    --rlg-start-color: #000;
+    --lg-start-color: #007f0c;
+    --lg-end-color: #004306;
+    --text-stroke-color: #000;
+    --buttons-text-color: #00cc14;
+  }
+}

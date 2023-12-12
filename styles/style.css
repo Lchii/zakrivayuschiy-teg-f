@@ -1,20 +1,339 @@
-/* Здесь вы напишете основную часть стилей страницы.
-
-Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
-✦ theme-dark — класс тёмной темы
-✦ theme-light — класс светлой темы
-✦ like-icon — для svg-иконки анимированного сердца
-✦ card__like-button — для кнопки Like рядом с иконкой
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
-✦ button__text — для обозначения текстового элемента внутри кнопки
-
-Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
-
-*/
-
 .page {
+  color: var(--accent-color);
+  font-family: var(--main-font, 'Inter-Variable', sans-serif);
+  background-color: var(--bg-color);
+  background-image: repeating-linear-gradient(
+      to right,
+      var(--rlg-start-color, #d3d3d3) 0 2px,
+      transparent 2px 4px
+    ),
+    repeating-linear-gradient(
+      to top,
+      var(--rlg-start-color, #d3d3d3) 0 2px,
+      transparent 2px 4px
+    ),
+    linear-gradient(
+      to bottom,
+      var(--lg-start-color, #e7e7e7) 0.01%,
+      var(--lg-end-color, #1a1a1a)
+    );
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  font-variation-settings: 'wgth' var(--main-font-weight, 400);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 102px auto;
+  border: 2px solid currentColor;
+  font-family: var(--accent-font, 'PressStart2P-Regular', fantasy);
+  background-color: var(--bg-color, #fff);
+  max-inline-size: 696px;
+}
+
+.header__logo {
+  margin: clamp(7.5rem, 7.1479rem + 1.5023vw, 8.5rem) 0 20px 0;
+  font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
+}
+
+.header__heading {
+  font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+  text-transform: uppercase;
+}
+
+.header__theme-menu {
+  margin-block: 25px;
+}
+
+.theme-menu__list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.theme-menu__button {
+  position: relative;
+  border: none;
+  text-transform: uppercase;
+  background-color: transparent;
+  transition: opacity 0.3s;
+}
+
+.theme-menu__button:hover {
+  opacity: 0.6;
+}
+
+.theme-menu__button::after {
+  content: '';
+  display: block;
+  margin-block-start: 2px;
+  opacity: 0.6;
+  background-color: currentColor;
+  transition: transform 0.3s;
+  transform: scaleX(0);
+  transform-origin: left;
+  block-size: 3px;
+}
+
+.theme-menu__button:focus-visible {
+  opacity: 0.6;
+}
+
+.theme-menu__button:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.theme-menu__button:disabled {
+  opacity: 0.6;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.theme-menu__button:disabled::before {
+  content: '▶';
+  position: absolute;
+  margin-inline-start: -20px;
+  animation: arrowMovement 0.5s ease-in-out infinite alternate;
+}
+
+.main {
+  font-size: 18px;
+}
+
+.card {
+  margin: 0 auto;
+  border: 2px solid currentColor;
+  background-color: var(--bg-color, #fff);
+  max-inline-size: 696px;
+}
+
+.card:not(:last-of-type) {
+  margin-block-end: 50px;
+}
+
+.card__title {
+  border-block-end: 2px solid currentColor;
+  padding: 3px 10px;
+  font-size: inherit;
+}
+
+.card__content {
+  display: grid;
+  grid-template-columns: auto min-content;
+  column-gap: 12px;
+  padding: 25px;
+}
+
+.card__picture {
+  position: relative;
+  border-block-end: 2px solid currentColor;
+}
+
+.card__picture-item {
+  object-fit: cover;
+  object-position: center;
+  vertical-align: bottom;
+  inline-size: 100%;
+  aspect-ratio: 1/1;
+}
+
+.brightness {
+  filter: brightness(0.8);
+}
+
+.contrast {
+  filter: contrast(0.9);
+}
+
+.filter {
+  filter: hue-rotate(-50deg) invert(0.11);
+}
+
+.opacity {
+  filter: opacity(0.9);
+}
+
+.grayscale {
+  filter: grayscale(1);
+}
+
+.saturate {
+  filter: saturate(1.1);
+}
+
+.invert {
+  filter: invert(0.1);
+}
+
+.card__picture-label {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.5;
+  font-family: var(--accent-font, 'PressStart2P-Regular', fantasy);
+  font-size: 14px;
+  text-transform: uppercase;
+  text-shadow: -1px 0 var(--text-stroke-color, #fff),
+    0 1px var(--text-stroke-color, #fff), 1px 0 var(--text-stroke-color, #fff),
+    0 -1px var(--text-stroke-color, #fff);
+  mix-blend-mode: hard-light;
+  inset-block-start: clamp(1.4375rem, 1.3935rem + 0.1878vw, 1.5625rem);
+  inset-inline-end: clamp(0.6875rem, 0.3794rem + 1.3146vw, 1.5625rem);
+}
+
+@supports ((text-stroke: 1px #fff) or (-webkit-text-stroke: 1px #fff)) {
+  .card__picture-label {
+    text-shadow: none;
+    -webkit-text-stroke: 1px var(--text-stroke-color, #fff);
+    text-stroke: 1px #fff;
+  }
+}
+
+.card__text {
+  grid-column: span 2;
+  line-height: 116.667%;
+}
+
+.card__text:not(:last-of-type) {
+  margin-block-end: 27px;
+}
+
+.card__text:last-of-type {
+  margin-block-end: 25px;
+}
+
+.card__like-button {
+  position: relative;
+  grid-column: 2;
+  justify-self: end;
+  border: 2px solid currentColor;
+  padding: 9px 17px;
+  overflow: auto;
+  line-height: 0.9;
+  background-color: transparent;
+  transition: box-shadow 0.3s;
+  min-inline-size: 130px;
+}
+
+.card__icon-button {
+  grid-column: 1;
+  justify-self: end;
+  align-self: center;
+  border: none;
+  border: 2px solid transparent;
+  background-color: transparent;
+  transition: border-color 0.3s;
+}
+
+.card__icon-button:focus-visible {
+  border-color: currentColor;
+}
+
+.button__text {
+  position: relative;
+  z-index: 1;
+  color: var(--buttons-text-color, #fff);
+  mix-blend-mode: difference;
+}
+
+.save-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 54px auto clamp(6.375rem, 6.309rem + 0.2817vw, 6.5625rem);
+  border: 2px solid currentColor;
+  padding: 15px 20px;
+  overflow: auto;
+  background-color: var(--bg-color, #fff);
+  transition: box-shadow 0.3s;
+}
+
+.floppy-icon {
+  color: var(--buttons-text-color, #fff);
+  mix-blend-mode: difference;
+}
+
+.card__like-button:focus-visible,
+.save-button:focus-visible {
+  box-shadow: 2px 2px 0 currentColor;
+}
+
+.card__like-button::before,
+.save-button::before,
+.dialog__button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid currentColor;
+  background-color: currentColor;
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(-100%);
+  transform-origin: left;
+}
+
+.card__like-button:hover::before,
+.save-button:hover::before,
+.dialog__button:hover::before {
+  transform: translateX(0%);
+}
+
+.dialog {
+  border: 2px solid currentColor;
+  padding: 30px;
+  color: var(--accent-color, #000);
+  font-family: var(--accent-font, 'PressStart2P-Regular', fantasy);
+  background-color: var(--bg-color, #fff);
+  max-inline-size: 357px;
+}
+
+.dialog[open] {
+  display: grid;
+  grid-template-areas:
+    "floppy text"
+    "button button";
+  align-items: center;
+  gap: 30px 20px;
+}
+
+.dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.75);
+}
+
+.dialog .floppy-icon {
+  grid-area: floppy;
+  width: 39px;
+  height: 39px;
+}
+
+.dialog__text {
+  grid-area: text;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.dialog__button {
+  position: relative;
+  grid-area: button;
+  border: 2px solid currentColor;
+  padding: 9px 17px;
+  overflow: auto;
+  line-height: 0.9;
+  background-color: transparent;
+  inline-size: 100%;
+}
+
+@media (width <= 425px) {
+  .save-button {
+    flex-direction: column;
+  }
+
+  .floppy-icon {
+    width: 28px;
+    height: 28px;
+  }
 }
