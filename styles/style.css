@@ -22,7 +22,7 @@
   background-attachment: fixed;
   min-inline-size: 320px;
   min-block-size: 100dvb;
-  font-variation-settings: 'wgth' var(--main-font-weight, 400);
+  font-variation-settings: 'wght' var(--main-font-weight);
 }
 
 .header {
@@ -120,7 +120,7 @@
   border-block-end: 2px solid currentColor;
   padding: 3px 10px;
   font-size: inherit;
-  font-variation-settings: 'wght' var(--title-font-weight, 700);
+  font-variation-settings: 'wght' var(--title-font-weight);
 }
 
 .card__content {
