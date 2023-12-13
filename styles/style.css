@@ -120,6 +120,7 @@
   border-block-end: 2px solid currentColor;
   padding: 3px 10px;
   font-size: inherit;
+  font-variation-settings: 'wght' var(--title-font-weight, 700);
 }
 
 .card__content {
@@ -223,7 +224,6 @@
   grid-column: 1;
   justify-self: end;
   align-self: center;
-  border: none;
   border: 2px solid transparent;
   background-color: transparent;
   transition: border-color 0.3s;
@@ -295,7 +295,7 @@
   display: grid;
   grid-template-areas:
     "floppy text"
-    "button button";
+    "form form";
   align-items: center;
   gap: 30px 20px;
 }
@@ -316,9 +316,12 @@
   text-transform: uppercase;
 }
 
+.dialog__form {
+  grid-area: form;
+}
+
 .dialog__button {
   position: relative;
-  grid-area: button;
   border: 2px solid currentColor;
   padding: 9px 17px;
   overflow: auto;
