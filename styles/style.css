@@ -256,6 +256,8 @@
 .floppy-icon {
   color: var(--buttons-text-color, #fff);
   mix-blend-mode: difference;
+  width: 21px;
+  height: 21px;
 }
 
 .card__like-button:focus-visible,
